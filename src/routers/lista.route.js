@@ -1,10 +1,34 @@
 const route = require('express').Router();
-const controllerTarefas = require('../controllers/lista.controller');
+const controllerListas = require('../controllers/lista.controller');
+const {
+  validAll,
+  idValid,
+  validObjectBody,
+  validAssignment,
+} = require('../middlewares/lista.middleware');
 
-route.get('/todasTarefas', controllerTarefas.findAllTarefasController);
-route.get('/tarefa/:id', controllerTarefas.findByIdTarefasController);
-route.post('/create', controllerTarefas.createTarefaController);
-route.put('/update/:id', controllerTarefas.updateTarefaController);
-route.delete('/delete/:id', controllerTarefas.deleteTarefaController);
+route.get(
+  '/allListas',
+  validAll,
+  controllerListas.findAllListasController,
+);
+route.get(
+  '/one-lista/:id', 
+  idValid, 
+  controllerListas.findByIdListaController);
+route.post(
+  '/create',
+  validObjectBody,
+  validAssignment,
+  controllerListas.createListaController,
+);
+route.put(
+  '/update/:id',
+  idValid,
+  validObjectBody,
+  validAssignment,
+  controllerListas.updateListaController,
+);
+route.delete('/delete/:id', idValid, controllerListas.deleteListaController);
 
 module.exports = route;

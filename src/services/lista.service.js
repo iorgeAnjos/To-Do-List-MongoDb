@@ -1,39 +1,43 @@
 const Lista = require('../models/Lista');
 
-const findAllTarefasServices = async () => {
-  const listas = await Lista.find();
-  return listas;
+const findAllListasServices = async () => {
+  const alllistas = await Lista.find();
+  return alllistas;
 };
 
-const findByIdTarefasServices = async (id) => {
-  const listas = await Lista.findById(id);
-  return listas;
+const findByIdListasServices = async (idParam) => {
+  const oneLista = await Lista.findById(idParam);
+  return oneLista;
 };
 
-const createTarefaServices = async (newTarefa) => {
-  const tarefaCreated = await Lista.create(newTarefa);
-  return tarefaCreated;
+const createListaservices = async (newListas) => {
+  const CreatedLista = await Lista.create(newListas);
+  return CreatedLista;
 };
 
-const updateTarefaServices = async (id, tarefaEdited) => {
-  const tarefaAtualizada = await Lista.findByIdAndUpdate(id, tarefaEdited)
-  return tarefaAtualizada;
+const updateListaservices = async (idParam, ListasEdited) => {
+  const updatedLista = await Lista.findByIdAndUpdate(idParam, ListasEdited)
+  return updatedLista;
 };
 
-const deleteTarefaServices = async (id) => {
-  return await Lista.findByIdAndDelete(id)
+const deleteListaservices = async (idParam) => {
+  return await Lista.findByIdAndDelete(idParam)
 };
 
 const findOne = async (newTask) => {
   const dbtask = await Lista.findOne({ tarefa: newTask.tarefa }).exec();
   return dbtask;
 };
+/* const findOne = async (newTask) => {
+  const dbtask = await Lista.findOne({nome: newTask.nome, prioridade: newTask.prioridade}).exec();
+  return dbtask
+} */
 
 module.exports = {
-  findAllTarefasServices,
-  findByIdTarefasServices,
-  createTarefaServices,
-  updateTarefaServices,
-  deleteTarefaServices,
+  findAllListasServices,
+  findByIdListasServices,
+  createListaservices,
+  updateListaservices,
+  deleteListaservices,
   findOne,
 };
