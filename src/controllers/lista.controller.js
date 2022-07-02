@@ -31,7 +31,7 @@ const updateListaController = async (req, res) => {
 const deleteListaController = async (req, res) => {
   const idParam = req.params.id;
   await listasServices.deleteListaservices(idParam);
-  res.send({ message: 'Listas excluida com êxito' });
+  res.send({ message: 'Lista excluida com êxito' });
 };
 
 module.exports = {
